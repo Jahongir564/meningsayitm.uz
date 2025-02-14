@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O'tkan Oydagi Ma'lumotlar</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #4842e0;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .info-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+        }
+
+        .image-container img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(176, 36, 36, 0.1);
+            margin: 10px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            color: #4842e0;
+            margin-bottom: 20px;
+        }
+
+        .past-month {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .past-month h2 {
+            color: #4842e0;
+        }
+
+        .past-month .image-container {
+            justify-content: center;
+        }
+
+        .past-month .image-container img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 10px;
+        }
+
+        /* For the sections showing 3-month and 6-month old data */
+        .historical-data {
+            margin-top: 40px;
+        }
+
+        .historical-data h2 {
+            text-align: center;
+            color: #4842e0;
+        }
+
+        .historical-data .image-container {
+            justify-content: space-between;
+        }
+
+        .historical-data .image-container img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+        }
+
+        /* Bosh sahifaga qaytish tugmasi */
+        .back-to-home {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 20px;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .back-to-home:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>O'tkan Oydagi Ma'lumotlar</h1>
+    </header>
+
+    <div class="container">
+        <div class="info-container">
+            <h2 class="section-title">Faoliyat Grafikasi</h2>
+            <canvas id="activityChart" width="400" height="200"></canvas>
+        </div>
+
+        <!-- 3 oylik holat -->
+        <div class="historical-data">
+            <h2>3 Oydagi Holat</h2>
+            <div class="image-container" id="3MonthImages">
+                <!-- 3 oydan eng ko'p rasmi bo'lgan o'quvchi uchun joy -->
+            </div>
+        </div>
+
+        <!-- 6 oylik holat -->
+        <div class="historical-data">
+            <h2>6 Oydagi Holat</h2>
+            <div class="image-container" id="6MonthImages">
+                <!-- 6 oydan eng ko'p rasmi bo'lgan o'quvchi va o'qituvchi uchun joy -->
+            </div>
+        </div>
+
+        <!-- New section for the last month -->
+        <div class="past-month">
+            <h2>O'tkan Oy Uchun</h2>
+            <div class="image-container">
+                <div>
+                    <h3>O'qituvchi</h3>
+                    <img src="image/oqituvchi7.jpg" alt="O'qituvchi 7">
+                </div>
+                <div>
+                    <h3>O'quvchi</h3>
+                    <img src="image/oquvchi7.jpg" alt="O'quvchi 7">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Maktab Sayti. Barcha huquqlar himoyalangan.</p>
+    </footer>
+
+    <!-- Bosh sahifaga qaytish tugmasi -->
+    <div class="back-to-home" id="backToHomeBtn" onclick="goToHomePage()">
+        Bosh Sahifaga
+    </div>
+
+    <script>
+        // Sample data to simulate the most popular image logic
+        const topImages = {
+            'oqituvchi': ['oqituvchi1.jpg', 'oqituvchi2.jpg', 'oqituvchi3.jpg'],
+            'oquvchi': ['oquvchi1.jpg', 'oquvchi2.jpg', 'oquvchi3.jpg'],
+        };
+
+        // Logic to get the most popular image for 3 months and 6 months
+        const popular3Month = {
+            'oqituvchi': 'oqituvchi2.jpg',
+            'oquvchi': 'oquvchi3.jpg'
+        };
+
+        const popular6Month = {
+            'oqituvchi': 'oqituvchi3.jpg',
+            'oquvchi': 'oquvchi2.jpg'
+        };
+
+        // Function to add most popular images to 3-month section
+        function addTopImages(sectionId, popularImages) {
+            const section = document.getElementById(sectionId);
+            section.innerHTML = `
+                <div>
+                    <h3>O'qituvchi</h3>
+                    <img src="image/${popularImages['oqituvchi']}" alt="Eng Faol O'qituvchi">
+                </div>
+                <div>
+                    <h3>O'quvchi</h3>
+                    <img src="image/${popularImages['oquvchi']}" alt="Eng Faol O'quvchi">
+                </div>
+            `;
+        }
+
+        // Add images to 3-month and 6-month sections
+        addTopImages('3MonthImages', popular3Month);
+        addTopImages('6MonthImages', popular6Month);
+
+        // Logic to display chart only when top images exist
+        function displayChart() {
+            const ctx = document.getElementById('activityChart').getContext('2d');
+            const activityChart = new Chart(ctx, {
+                type: 'line', // Change the chart type here if needed
+                data: {
+                    labels: ['Yanvar', 'Fevral', 'Mart', 'Aprel', 'May', 'Iyun'],
+                    datasets: [{
+                        label: 'O\'quvchilar Faoliyati',
+                        data: [12, 19, 3, 5, 2, 3],
+                        borderColor: '#4842e0',
+                        fill: false
+                    }, {
+                        label: 'O\'qituvchilar Faoliyati',
+                        data: [7, 11, 5, 8, 4, 6],
+                        borderColor: '#4CAF50',
+                        fill: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        // Call the chart display function
+        displayChart();
+
+        // Bosh sahifaga qaytish tugmasining logikasi
+        function goToHomePage() {
+            // Bu kod foydalanuvchini maktab saytining asosiy sahifasiga olib boradi
+            window.location.href = 'index.html'; // Saytingizning asosiy sahifasi URL manzilini to'g'rilash
+        }
+    </script>
+</body>
+</html>
+
+
+
+

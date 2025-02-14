@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ovoz Berish - O'qituvchilar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #96b3db;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header {
+            background-color: #4842e0;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-text {
+            font-size: 24px;
+            font-weight: bold;
+            animation: fadeIn 3s ease-in-out;
+        }
+
+        .header-subtext {
+            font-size: 16px;
+            color: #ffdd57;
+            margin-top: 10px;
+            font-style: italic;
+            animation: slideIn 2s ease-out;
+        }
+
+        .content {
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            margin: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Jadval dizayni */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th, td {
+            padding: 12px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        th {
+            background-color: #4842e0;
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        td {
+            background-color: #f9f9f9;
+        }
+        td:hover {
+            background-color: #e0e0e0;
+        }
+        td img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+        .audio {
+            cursor: pointer;
+            color: #4842e0;
+            font-weight: bold;
+        }
+
+        /* 3D effekt va animatsiya */
+        .vote-btn {
+            background-color: #4842e0;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease;
+        }
+
+        .vote-btn:hover {
+            background-color: #3e38b4;
+            transform: scale(1.05);
+        }
+
+        .vote-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            background-color: #3e38b4;
+        }
+
+        /* Countdown timer styles */
+        #countdown {
+            font-size: 20px;
+            color: #ff0000;
+            font-weight: bold;
+        }
+
+        /* Maxfiy kodni kiriting */
+        #codeForm {
+            margin-top: 20px;
+        }
+        #newVoteBtn {
+            display: none;
+        }
+
+        #teacherInfo {
+            margin-top: 30px;
+            display: none;
+        }
+
+        /* Animatsiyalar */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            0% {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .chotki {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #ffdd57;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #4842e0;
+            font-weight: bold;
+            animation: bounce 1.5s infinite alternate;
+        }
+
+        @keyframes bounce {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Orqa fonda alifbe kitobi animatsiyasi */
+        .alphabet-book-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('image/alphabet-book.jpg'); /* Alifbe kitobi rasmining manzili */
+            background-size: cover;
+            animation: moveBackground 20s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes moveBackground {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* Bosh sahifaga qaytish tugmasi */
+        .back-to-home {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: #ffdd57;
+            color: #4842e0;
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 16px;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .back-to-home:hover {
+            background-color: #ffd700;
+            transform: scale(1.05);
+        }
+
+        .back-to-home:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Alifbe kitobi orqa fon animatsiyasi -->
+    <div class="alphabet-book-animation"></div>
+
+    <header>
+        <div class="chotki">🔔</div>
+        <div class="header-text">1-4 Sinf O'qituvchilari O'rtasidagi Oyning Eng Yaxshi O'qituvchisi</div>
+        <div class="header-subtext">Hozirgi kunda, o'quvchilarimizning eng yaxshi o'qituvchini tanlashda ovoz berish jarayonida ishtirok etish imkoniyatiga egalar.</div>
+    </header>
+
+    <div class="content">
+        <h2>O'qituvchilarga Ovoz Berish</h2>
+        
+        <!-- Countdown timer -->
+        <div id="countdown">Vaqt: 4 kun 00:00:00</div>
+
+        <!-- Jadval -->
+        <h3>O'qituvchilar Ro'yxati</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Rasm</th>
+                    <th>Ism</th>
+                    <th>Familiya</th>
+                    <th>Ovoz</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- O'qituvchi 1 -->
+                <tr>
+                    <td><img src="image/teacher1.jpg" alt="O'qituvchi 1"></td>
+                    <td>Alisher</td>
+                    <td>Mahmudov</td>
+                    <td><button class="vote-btn" onclick="vote(0)">Ovoz berish</button></td>
+                </tr>
+                <!-- O'qituvchi 2 -->
+                <tr>
+                    <td><img src="image/teacher2.jpg" alt="O'qituvchi 2"></td>
+                    <td>Gulnora</td>
+                    <td>Raximova</td>
+                    <td><button class="vote-btn" onclick="vote(1)">Ovoz berish</button></td>
+                </tr>
+                <!-- O'qituvchi 3 -->
+                <tr>
+                    <td><img src="image/teacher3.jpg" alt="O'qituvchi 3"></td>
+                    <td>Olim</td>
+                    <td>Ismailov</td>
+                    <td><button class="vote-btn" onclick="vote(2)">Ovoz berish</button></td>
+                </tr>
+                <!-- O'qituvchi 4 -->
+                <tr>
+                    <td><img src="image/teacher4.jpg" alt="O'qituvchi 4"></td>
+                    <td>Shahnoza</td>
+                    <td>G'ulomova</td>
+                    <td><button class="vote-btn" onclick="vote(3)">Ovoz berish</button></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- Maxfiy kod -->
+        <div id="codeForm">
+            <label for="code">Maxfiy kod:</label>
+            <input type="text" id="code" name="code" placeholder="Maxfiy kodni kiriting">
+            <button onclick="checkCode()">Tasdiqlash</button>
+        </div>
+
+        <!-- O'qituvchi haqida ma'lumot -->
+        <div id="teacherInfo" style="display: none;">
+            <h3>O'qituvchi haqida ma'lumot:</h3>
+            <p id="teacherDetails"></p>
+        </div>
+
+        <!-- Yangi ovoz berish tugmasi -->
+        <button id="newVoteBtn" onclick="startNewVote()">Yangi Ovoz Berish</button>
+    </div>
+
+    <!-- Bosh sahifaga qaytish tugmasi -->
+    <button class="back-to-home" onclick="goHome()">Bosh sahifaga qaytish</button>
+
+    <script>
+        let voteCount = 0;
+        let isVotingInProgress = false;
+        let countdownTimer;
+        let totalVotes = 4; // Ovozlar soni (4 ta ovoz)
+
+        function vote(teacherIndex) {
+            if (!isVotingInProgress) {
+                alert('Maxfiy kodni kiriting, ovoz berishdan oldin!');
+                return;
+            }
+            voteCount++;
+            if (voteCount >= totalVotes) {
+                clearInterval(countdownTimer); // Vaqtni to'xtatish
+                // Ovoz berish tugagach "O'qituvchi haqida ma'lumot" bo'limini ko'rsatamiz
+                document.getElementById('teacherInfo').style.display = 'block';
+                document.getElementById('teacherDetails').textContent = `Ovoz berish yakunlandi. ${totalVotes} ta ovoz berildi.`;
+                document.getElementById('newVoteBtn').style.display = 'block';
+            }
+        }
+
+        function checkCode() {
+            const code = document.getElementById("code").value;
+            if (code === "1234") {
+                startTimer();
+                isVotingInProgress = true;
+                document.getElementById("codeForm").style.display = "none"; // Maxfiy kod formi ni yashirish
+            } else {
+                alert("Noto'g'ri kod!");
+            }
+        }
+
+        function startTimer() {
+            let timeLeft = 4 * 24 * 60 * 60; // 4 kun (saniyalar)
+            countdownTimer = setInterval(function() {
+                let days = Math.floor(timeLeft / (24 * 60 * 60));
+                let hours = Math.floor((timeLeft % (24 * 60 * 60)) / (60 * 60));
+                let minutes = Math.floor((timeLeft % (60 * 60)) / 60);
+                let seconds = timeLeft % 60;
+                document.getElementById("countdown").textContent = `Vaqt: ${days} kun ${hours}:${minutes}:${seconds}`;
+                if (timeLeft <= 0) {
+                    clearInterval(countdownTimer);
+                    document.getElementById('teacherInfo').style.display = 'block';
+                    document.getElementById('teacherDetails').textContent = `Vaqt tugadi, ovoz berish yakunlandi.`;
+                    document.getElementById('newVoteBtn').style.display = 'block';
+                }
+                timeLeft--;
+            }, 1000);
+        }
+
+        function startNewVote() {
+            voteCount = 0;
+            isVotingInProgress = false;
+            document.getElementById("codeForm").style.display = "block";
+            document.getElementById("countdown").textContent = "Vaqt: 4 kun 00:00:00"; // Vaqtni qayta tiklash
+            document.getElementById('teacherInfo').style.display = 'none';
+            document.getElementById('newVoteBtn').style.display = 'none';
+            document.getElementById("code").value = ''; // Kodni tozalash
+        }
+
+        function goHome() {
+            window.location.href = "index.html"; // Bosh sahifa manzilingizni bu yerga qo'ying
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

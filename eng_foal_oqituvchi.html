@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eng Faol O'qituvchi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #4842e0;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .image-container {
+            width: 45%;
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .image-container img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(176, 36, 36, 0.1);
+        }
+
+        .info-container {
+            width: 45%;
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-container h2 {
+            color: #4842e0;
+        }
+
+        .info-container p {
+            line-height: 1.6;
+        }
+
+        footer {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+
+        /* Bosh sahifaga qaytish tugmasi */
+        .back-to-home {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 20px;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .back-to-home:hover {
+            background-color: #45a049;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Eng Faol O'qituvchi</h1>
+    </header>
+
+    <div class="container">
+        <div class="image-container">
+            <h2>O'qituvchining Rasmi</h2>
+            <img src="image/oqituvchi.jpg" alt="O'qituvchi">
+        </div>
+        <div class="info-container">
+            <h2>O'qituvchi Haqida Ma'lumot</h2>
+            <p>O'qituvchi Adhamov Shuxratbek o'zining yuqori malakasi va mehnatsevarligi bilan tanilgan. U matematika fanidan dars beradi va o'quvchilarga zamonaviy pedagogik usullarni o'rgatadi. Adhamovning darslari interaktiv va samarali bo'lib, o'quvchilarning matematika bo'yicha bilimlarini oshirishda katta rol o'ynaydi. Uning ko'plab o'quvchilari yuqori natijalarga erishgan va xalqaro musobaqalarda g'olib bo'lganlar.</p>
+        </div>
+    </div>
+
+    <!-- Bosh sahifaga qaytish tugmasi -->
+    <div class="back-to-home" onclick="window.location.href = 'index.html';">
+        Bosh Sahifaga
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Maktab Sayti. Barcha huquqlar himoyalangan.</p>
+    </footer>
+    
+</script>
+</body>
+</html>
+
+
+

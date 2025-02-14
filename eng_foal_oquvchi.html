@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eng Faol O'quvchi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4842e0;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+        .image-container {
+            width: 45%;
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .image-container img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(176, 36, 36, 0.1);
+        }
+        .info-container {
+            width: 45%;
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+
+        /* Bosh sahifaga qaytish tugmasi */
+        .back-to-home {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 20px;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .back-to-home:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Eng Faol O'quvchi</h1>
+    </header>
+
+    <div class="container">
+        <div class="image-container">
+            <h2>O'quvchi Rasmi</h2>
+            <img src=".jpg" alt="Eng Faol O'quvchi">
+        </div>image/eng_faol_oquvchi
+        <div class="info-container">
+            <h2>Eng Faol O'quvchi Haqida Ma'lumot</h2>
+            <p>Eng faol o'quvchi <strong>Adhamov Sarvarbek</strong> bo'lib, u o'zining ilmiy ishlari va maktab ichidagi faoliyati bilan ajralib turadi. Sarvarbek bir nechta musobaqalarda g'olib bo'lib, o'zining matematika bo'yicha bilimlarini o'quvchilarga o'rgatishda faol ishtirok etadi. Shuningdek, o'zining liderlik xususiyatlari bilan ham tanilgan.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Maktab Sayti. Barcha huquqlar himoyalangan.</p>
+    </footer>
+
+   
+        // Bosh sahifaga qaytish logikasi
+        function goToHomePage() {
+            window.location.href = 'index.html';  // Asosiy sahifaga yo'naltirish
+        }
+    </script>
+</body>
+</html>
+

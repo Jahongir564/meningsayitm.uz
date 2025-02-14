@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maktab Sayti</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #96b3db;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #4842e0;
+            color: rgb(250, 250, 250);
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: slideIn 1s forwards;
+        }
+
+        @keyframes slideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+            opacity: 0;
+            animation: fadeIn 1.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Bir xil dizayn uchun umumiy class */
+        .common-container {
+            width: 45%;
+            margin: 10px;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            animation: fadeInContent 2s forwards;
+        }
+
+        /* Animatsiya: bo'limlar asta-sekin ko'rinadi */
+        @keyframes fadeInContent {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .common-container img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(176, 36, 36, 0.1);
+        }
+
+        iframe {
+            width: 100%;
+            height: 300px;
+            border: none;
+            border-radius: 8px;
+        }
+
+        footer {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+
+        .sidebar-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: linear-gradient(135deg, rgba(72, 72, 224, 0.7), rgba(72, 72, 224, 0.9)); 
+            padding: 10px;
+            border-radius: 8px;
+            z-index: 1000;
+            width: 100vw;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: moveSidebar 15s linear infinite;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+            transform: perspective(500px) rotateX(5deg); 
+        }
+
+        @keyframes moveSidebar {
+            0% {
+                left: 100%;
+            }
+            100% {
+                left: -100vw;
+            }
+        }
+
+        .sidebar-container a {
+            display: block;
+            text-decoration: none;
+            color: white;
+            margin: 0 20px;
+            font-size: 18px;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-weight: bold;
+            transform: perspective(500px) rotateY(10deg);
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-container a:hover {
+            text-decoration: underline;
+            transform: perspective(500px) rotateY(0deg);
+        }
+
+        /* Orqaga qaytish tugmasi */
+        .back-button {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #4842e0;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .back-button:hover {
+            background-color: #3c36c5;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Maktabning rasmiy veb sayti</h1>
+        <p>23-Maktab Sayti</p>
+    </header>
+
+    <!-- Harakatlanuvchi bo'lim -->
+    <div class="sidebar-container">
+        <a href="sinflar.html" target="_blank">1-4 Sinflar</a>
+        <a href="eng_foal_oqituvchi.html" target="_blank">Eng Faol O'qituvchi</a>
+        <a href="eng_foal_oquvchi.html" target="_blank">Eng Faol O'quvchi</a>
+        <a href="otkan_oygi_malumotlar.html" target="_blank">O'tkan Oydagi Ma'lumotlar</a>
+        <a href="sinflar_5_8.html" target="_blank">5-8 Sinflar</a>
+    </div>
+
+    <div class="main-content">
+        <div class="container">
+            <!-- Maktab Rasmi -->
+            <div class="common-container">
+                <h2>Maktab Rasmi</h2>
+                <img src="image/photo_2025-02-07_13-20-14.jpg" alt="Maktab Rasmi">
+            </div>
+
+            <!-- Maktab Haqida Ma'lumot -->
+            <div class="common-container">
+                <h2>Maktab Haqida Ma'lumot</h2>
+                <p>Bizning maktabimizning o'quvchilari yuqori natijalar ko'rsatmoqda. Maktabda zamonaviy texnologiyalar va yuqori malakali o'qituvchilar mavjud. O'quvchilar uchun barcha sharoitlar yaratilgan.</p>
+                <p>O'quvchilarning ijtimoiy faoliyati va ilmiy ishlari doimo kuzatilib boriladi. Har yili ko'plab musobaqalar va tanlovlar o'tkaziladi.</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <!-- Videolar va Yangiliklar -->
+            <div class="common-container">
+                <h2>Videolar va Yangiliklar</h2>
+                <iframe src="image/video.mp4" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+
+            <!-- O'qituvchilar Haqida Ma'lumot -->
+            <div class="common-container">
+                <h2>O'qituvchilar Haqida Ma'lumot</h2>
+                <p>Maktabimiz o'qituvchilari haqidagi batafsil ma'lumotni ko'rish uchun quyidagi havolaga bosing:</p>
+                <a href="oqituvchilar.html" target="_blank">O'qituvchilar Haqida Ma'lumot</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Maktab Sayti. Barcha huquqlar himoyalangan.</p>
+    </footer>
+
+    <!-- Orqaga qaytish tugmasi -->
+    <button class="back-button" onclick="scrollToTop()">Orqaga qaytish</button>
+
+    <script>
+        // Orqaga qaytish tugmasini faollashtirish
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Tugmani faollashtirish uchun sahifa pastga aylanganda uni ko'rsatish
+        window.addEventListener("scroll", function() {
+            const backButton = document.querySelector(".back-button");
+            if (window.scrollY > 300) {
+                backButton.style.display = "block";
+            } else {
+                backButton.style.display = "none";
+            }
+        });
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
